@@ -23,13 +23,13 @@ class RegisterController extends AbstractController
             ]);
         }
         $user = new User();
-
+        $roles = "ROLE_USER";
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
             //Hashing password
-            $user->setPassword($passwordHasher->hashPassword($user, $form->getData()));
+            $user->setPassword($passwordHasher->hashPassword($user, $form->get('password')->getData()));
 
             //Get file for the profile picture
             $file = $form['image']->getData();
@@ -40,7 +40,7 @@ class RegisterController extends AbstractController
             //Move and rename a file
             $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
             //register in database
-
+            $user->setRole($roles);
             $em->persist($user);
             $em->flush();
         }

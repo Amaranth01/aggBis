@@ -93,9 +93,13 @@ class User  implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRole(): array
     {
-        return $this->role;
+        $roles = $this->role;
+        // guarantee every user at least has ROLE_USER
+        $role[] = 'ROLE_USER';
+
+        return array_unique($role);
     }
 
     public function setRole(string $role): self
