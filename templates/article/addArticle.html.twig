@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Add article {% endblock %}
+
+{% block body %}
+    <h1>Add an article</h1>
+
+    <div class="articleForm">
+        {{ form_start(article_form) }}
+        <div class="form-content">
+            <div class="form_row">
+                {{ form_row(article_form.title) }}
+            </div>
+           <div class="form_row">
+               {{ form_row(article_form.content) }}
+           </div>
+            <div class="form_row">
+                {{ form_row(article_form.image) }}
+            </div>
+            {{ form_end(article_form) }}
+        </div>
+    </div>
+{% endblock %}

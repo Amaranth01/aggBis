@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Register {% endblock %}
+
+{% block body %}
+    <h1>Register you</h1>
+
+    <div class="articleForm">
+        {{ form_start(register_form) }}
+        <div class="form-content">
+            <div class="form_row">
+                {{ form_row(register_form.username) }}
+            </div>
+            <div class="form_row">
+                {{ form_row(register_form.email) }}
+            </div>
+            <div class="form_row">
+                {{ form_row(register_form.password) }}
+            </div>
+            <div class="form_row">
+                {{ form_row(register_form.image) }}
+            </div>
+            {{ form_end(register_form) }}
+        </div>
+    </div>
+{% endblock %}

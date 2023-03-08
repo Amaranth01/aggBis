@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 96vh;
+    position: relative;
+    background-color: ghostwhite;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+}
+
+li, li > a {
+    list-style: none;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    margin-top: 0.8rem;
+}
+
+#logo {
+    width: 3rem;
+}
