@@ -25,7 +25,7 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: comment::class)]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comment::class)]
     private Collection $comment;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
@@ -86,7 +86,7 @@ class Article
         return $this->comment;
     }
 
-    public function addComment(comment $comment): self
+    public function addComment(Comment $comment): self
     {
         if (!$this->comment->contains($comment)) {
             $this->comment->add($comment);
@@ -96,7 +96,7 @@ class Article
         return $this;
     }
 
-    public function removeComment(comment $comment): self
+    public function removeComment(Comment $comment): self
     {
         if ($this->comment->removeElement($comment)) {
             // set the owning side to null (unless already changed)
