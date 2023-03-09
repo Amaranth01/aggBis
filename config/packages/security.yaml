@@ -37,7 +37,7 @@ security:
     role_hierarchy:
         ROLE_MODO: ROLE_USER
         ROLE_WRITER: ROLE_USER
-        ROLE_ADMIN: [ROLE_MODERATOR, ROLE_WRITER]
+        ROLE_ADMIN: [ROLE_MODO, ROLE_WRITER]
 
 when@test:
     security:

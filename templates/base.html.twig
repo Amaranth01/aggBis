@@ -14,10 +14,13 @@
                 <li><a href="">Articles</a></li>
                 {% if is_granted("ROLE_WRITER") %}
                     <li><a href="/user/writer-space">Writer</a></li>
+                {% endif %}
 
-                {% elseif is_granted("ROLE_MODO")%}
+                {% if is_granted("ROLE_MODO")%}
                     <li><a href="/user/modo-space">Moderator</a></li>
-                {% elseif is_granted("ROLE_ADMIN")%}
+                {% endif %}
+
+                {% if is_granted("ROLE_ADMIN")%}
                     <li><a href="/admin">Admin</a></li>
                 {% endif %}
 
@@ -36,6 +39,7 @@
     {% block body %}
             {% block content %} {% endblock %}
     {% endblock %}
+    <script src="https://kit.fontawesome.com/f33464c73a.js" crossorigin="anonymous"></script>
     <script src="/build/app.js"></script>
 </body>
 </html>

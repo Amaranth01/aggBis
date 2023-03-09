@@ -30,7 +30,7 @@ class Article
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user_id = null;
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -108,14 +108,14 @@ class Article
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?user $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
