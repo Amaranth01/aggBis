@@ -23,7 +23,7 @@ class RegisterController extends AbstractController
             ]);
         }
         $user = new User();
-        $roles = "ROLE_USER";
+        $role = ["ROLE_USER"];
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 
@@ -40,7 +40,7 @@ class RegisterController extends AbstractController
             //Move and rename a file
             $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
             //register in database
-            $user->setRole($roles);
+            $user->setRoles($role);
             $em->persist($user);
             $em->flush();
         }

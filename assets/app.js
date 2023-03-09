@@ -9,6 +9,6 @@
 import './styles/app.css';
 import './styles/style.css';
 //import website's logo
-import './uploads/images/logoAGG.png';
+import './images/logoAGG.png';
 // start the Stimulus application
 import './bootstrap';

@@ -3,14 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-class User  implements PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,41 +19,75 @@ class User  implements PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $username = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    #[ORM\Column]
+    private array $roles = [];
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $role = null;
-
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
     private Collection $articles;
 
-    public function __construct()
+    /**
+     * @return Collection
+     */
+    public function getArticles(): Collection
     {
-        $this->articles = new ArrayCollection();
+        return $this->articles;
     }
 
-    public function getId(): ?int
+    /**
+     * @param Collection $articles
+     */
+    public function setArticles(Collection $articles): void
     {
-        return $this->id;
+        $this->articles = $articles;
     }
 
+    /**
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    /**
+     * @param string|null $username
+     */
+    public function setUsername(?string $username): void
     {
         $this->username = $username;
+    }
 
-        return $this;
+    /**
+     * @return string|null
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string|null $image
+     */
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getEmail(): ?string
@@ -69,7 +102,39 @@ class User  implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -81,61 +146,17 @@ class User  implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getRole(): array
-    {
-        $roles = $this->role;
-        // guarantee every user at least has ROLE_USER
-        $role[] = 'ROLE_USER';
-
-        return array_unique($role);
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Article>
+     * @see UserInterface
      */
-    public function getArticles(): Collection
+    public function eraseCredentials()
     {
-        return $this->articles;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    public function addArticle(Article $article): self
+    public function __toString(): string
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getUserId() === $this) {
-                $article->setUserId(null);
-            }
-        }
-
-        return $this;
+        return $this->username;
     }
 }

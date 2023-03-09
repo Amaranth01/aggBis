@@ -12,13 +12,24 @@
             <ul>
                 <a href="/"><img src="/build/images/logoAGG.2b45c975.png" alt="logo du site" id="logo"></a>
                 <li><a href="">Articles</a></li>
-                <li><a href="/user/writer-space">Writer</a></li>
-                <li><a href="/user/modo-space">Moderator</a></li>
-                <li><a href="/admin">Admin</a></li>
-                <li><a href="">Log in</a></li>
-                <li><a href="/register">Register</a></li>
+                {% if is_granted("ROLE_WRITER") %}
+                    <li><a href="/user/writer-space">Writer</a></li>
+
+                {% elseif is_granted("ROLE_MODO")%}
+                    <li><a href="/user/modo-space">Moderator</a></li>
+                {% elseif is_granted("ROLE_ADMIN")%}
+                    <li><a href="/admin">Admin</a></li>
+                {% endif %}
+
+                {% if app.user %}
+                    <li><a href="">profile <img src="" alt=""></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                {% else %}
+                    <li><a href="/login">Log in</a></li>
+                    <li><a href="/register">Register</a></li>
+                {% endif %}
                 <li>Lang : </li>
-                <img src="" alt="">
+
             </ul>
         </nav>
     </div>
