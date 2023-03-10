@@ -5,8 +5,17 @@
 {% block body %}
     {% block content %}
         <h1>AGG bis, like AGG, but in different</h1>
-{#        {% for %}#}
-
-{#        {% endfor %}#}
+            {% if articles is defined %}
+                {% for article in articles %}
+                        <a href="{{ '/article/display/{id}' }}">
+                            <div id="articleMin">
+                                <h2 id="titleArticleMin">{{ article.title }}</h2>
+                                <div>
+                                    <img src="{{ ('/uploads/' ~ article.image) }}" alt="article's image" id="imgArticleMin">
+                                </div>
+                            </div>
+                        </a>
+                {% endfor %}
+            {% endif %}
     {% endblock %}
 {% endblock %}

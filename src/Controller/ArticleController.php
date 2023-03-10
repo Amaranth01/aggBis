@@ -4,16 +4,23 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+#[Route('/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/article_add', name: 'app_article_add')]
+    #[Route('/', name: 'app_article')]
+    public function index(ArticleRepository $articleRepo): Response {
+        return $this->render('home/index.html.twig', [
+            'articles' => $articleRepo->findAll(),
+        ]);
+    }
+    #[Route('/add', name: 'app_article_add')]
     public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container): Response
     {
         if(!$this->isGranted('ROLE_WRITER')) {
@@ -41,6 +48,12 @@ class ArticleController extends AbstractController
         }
         return $this->render('article/addArticle.html.twig', [
             'article_form' => $form->createView(),
+        ]);
+    }
+    #[Route('/display/{id}', name: 'app_article_display')]
+    public function displayArticle(Article $article) : Response {
+        return $this->render('article/displayArticle', [
+           'article' => $article,
         ]);
     }
 }

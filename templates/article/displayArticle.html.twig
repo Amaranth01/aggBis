@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block content %}
+        <div class="content">
+            <div id="article">
+                <div class="articleTitle">
+                    <h1>{{ article.title }}</h1>
+                    <img src="{{ ('/uploads/' ~ article.image  ~ '.' ~ article.ext) }}" alt="article's image" id="imgArticle">
+                </div>
+
+                <div id="articleContent">
+                    <div>
+                        {{ article.content }}
+                    </div>
+                </div>
+            </div>
+
+{#            <div id="commentArticle">#}
+{#                <h2>{{ Comments }}</h2>#}
+{#                    <div id="comment">#}
+{#                        {% for comments in article.comment %}#}
+{#                            <p>{{ comment.user.email }}</p> <span>{{ comment.user.image }}</span>#}
+{#                            <p>{{ comment.content }}</p>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#            </div>#}
+{#            #}
+{#            <div id="addComment">#}
+{#                {% if app.user %}#}
+{#                    <div>#}
+{#                        #}
+{#                    </div>#}
+{#                {% endif %}#}
+{#            </div>#}
+        </div>
+    {% endblock %}
+{% endblock %}
