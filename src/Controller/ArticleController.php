@@ -11,6 +11,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
@@ -21,7 +23,7 @@ class ArticleController extends AbstractController
         ]);
     }
     #[Route('/add', name: 'app_article_add')]
-    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container): Response
+    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container, SluggerInterface $slugger): Response
     {
         if(!$this->isGranted('ROLE_WRITER')) {
             return $this->render('home/index.html.twig');
@@ -43,6 +45,7 @@ class ArticleController extends AbstractController
             //Move and rename a file
             $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
             $article->setUser($user);
+            $article->setSlug(strtolower($slugger->slug($form['title']->getData())));
             $em->persist($article);
             $em->flush();
         }
@@ -50,9 +53,9 @@ class ArticleController extends AbstractController
             'article_form' => $form->createView(),
         ]);
     }
-    #[Route('/display/{id}', name: 'app_article_display')]
+    #[Route('/{slug}', name: 'app_article_display', methods: ['GET'])]
     public function displayArticle(Article $article) : Response {
-        return $this->render('article/displayArticle', [
+        return $this->render('article/displayArticle.html.twig', [
            'article' => $article,
         ]);
     }
