@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,10 +25,10 @@ class ArticleController extends AbstractController
         ]);
     }
     #[Route('/add', name: 'app_article_add')]
-    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container, SluggerInterface $slugger): Response
+    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container, SluggerInterface $slugger, Comment $comment): Response
     {
         if(!$this->isGranted('ROLE_WRITER')) {
-            return $this->render('home/index.html.twig');
+            return $this->render('home/addComment.html.twig');
         }
 
         $user = $this->getUser();
@@ -45,6 +47,7 @@ class ArticleController extends AbstractController
             //Move and rename a file
             $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
             $article->setUser($user);
+            $comment->setContent($comment->getContent());
             $article->setSlug(strtolower($slugger->slug($form['title']->getData())));
             $em->persist($article);
             $em->flush();
@@ -56,7 +59,7 @@ class ArticleController extends AbstractController
     #[Route('/{slug}', name: 'app_article_display', methods: ['GET'])]
     public function displayArticle(Article $article) : Response {
         return $this->render('article/displayArticle.html.twig', [
-           'article' => $article,
+            'article' => $article,
         ]);
     }
 }

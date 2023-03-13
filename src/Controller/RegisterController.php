@@ -18,7 +18,7 @@ class RegisterController extends AbstractController
     #[Route('/', name: 'app_register')]
     public function register(Request $request, ParameterBagInterface $container, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response {
         if($this->getUser()) {
-            return $this->render('home/index.html.twig', [
+            return $this->render('home/addComment.html.twig', [
                 'controller_name' => 'HomeController',
             ]);
         }

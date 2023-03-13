@@ -6,7 +6,6 @@
             <div id="article">
                 <div class="articleTitle">
                     <h1>{{ article.title }}</h1>
-                    {{ dump(article) }}
                     <img src="uploads/{{ article.image }}" alt="article's image">
                 </div>
 
@@ -17,23 +16,25 @@
                 </div>
             </div>
 
-{#            <div id="commentArticle">#}
-{#                <h2>{{ Comments }}</h2>#}
-{#                    <div id="comment">#}
-{#                        {% for comments in article.comment %}#}
-{#                            <p>{{ comment.user.email }}</p> <span>{{ comment.user.image }}</span>#}
-{#                            <p>{{ comment.content }}</p>#}
-{#                        {% endfor %}#}
-{#                    </div>#}
-{#            </div>#}
-{#            #}
-{#            <div id="addComment">#}
-{#                {% if app.user %}#}
-{#                    <div>#}
-{#                        #}
-{#                    </div>#}
-{#                {% endif %}#}
-{#            </div>#}
+            <div id="commentArticle">
+                <h2>Comments</h2>
+                <div id="comment">
+                    {% for comments in article.comment %}
+                        <p>{{ comments.user.username }}</p> <span>{{ comments.user.image }}</span>
+                        <p>{{ comments.content }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="addComment">
+                {% if app.user %}
+
+                        <a href="{{ path('app_add_comment', {'slug' :article.slug  }) }}">{{ 'Add comment' |trans }} </a>
+                    {% else %}
+                        <p>You must be logged for posting a comment</p>
+
+                {% endif %}
+            </div>
         </div>
     {% endblock %}
 {% endblock %}
