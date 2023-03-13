@@ -16,9 +16,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('image', FileType::class, [
-                'label' => 'Upload an image for your article'
-            ])
+            ->add('image', FileType::class)
             ->add('user')
             ->add('save', SubmitType::class, [
                 'label' => "Saving"

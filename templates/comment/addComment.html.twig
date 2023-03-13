@@ -7,6 +7,7 @@
     <p>{{ comment.article.title }}</p>
     {{ form_start(comment_form) }}
     <div>
+        {{ form_label(comment_form.content, {{ 'Comment\'s content' | trans }}) }}
         {{ form_row(comment_form.content) }}
     </div>
     {{ form_end(comment_form) }}

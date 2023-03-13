@@ -13,11 +13,11 @@
                 <a href="/"><img src="/build/images/logoAGG.2b45c975.png" alt="logo du site" id="logo"></a>
                 <li><a href="">Articles</a></li>
                 {% if is_granted("ROLE_WRITER") %}
-                    <li><a href="/user/writer-space">Writer</a></li>
+                    <li><a href="/user/writer-space">{{ 'Writer' | trans }}</a></li>
                 {% endif %}
 
                 {% if is_granted("ROLE_MODO")%}
-                    <li><a href="/user/modo-space">Moderator</a></li>
+                    <li><a href="/user/modo-space">{{ 'Moderator' | trans }}</a></li>
                 {% endif %}
 
                 {% if is_granted("ROLE_ADMIN")%}
@@ -25,13 +25,11 @@
                 {% endif %}
 
                 {% if app.user %}
-                    <li><a href="">profile <img src="" alt=""></a></li>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/logout">{{ 'Logout' | trans }}</a></li>
                 {% else %}
-                    <li><a href="/login">Log in</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">{{ 'Login' | trans }}</a></li>
+                    <li><a href="/register">{{ 'Register' | trans }}</a></li>
                 {% endif %}
-                <li>Lang : </li>
 
             </ul>
         </nav>

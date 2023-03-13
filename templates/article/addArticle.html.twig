@@ -9,12 +9,15 @@
         {{ form_start(article_form) }}
         <div class="form-content">
             <div class="form_row">
+                {{ form_label(article_form.title, {{ 'Title of article' | trans }}) }}
                 {{ form_row(article_form.title) }}
             </div>
            <div class="form_row">
+               {{ form_label(article_form.content, {{ 'Content of article' | trans }}) }}
                {{ form_row(article_form.content) }}
            </div>
             <div class="form_row">
+                {{ form_label(article_form.image, {{ 'image of article' | trans }}) }}
                 {{ form_row(article_form.image) }}
             </div>
             {{ form_end(article_form) }}
