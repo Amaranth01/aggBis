@@ -23,7 +23,7 @@ class UserController extends AbstractController
     #[Route('/writer-space', name: 'writer_space')]
     public function writerSpace(): Response {
           //Secured for access
-//        if(!in_array('ROLE_WRITER' 'ROLE_ADMIN', $this->getUser()->getRoles())) {
+//        if(!in_array('ROLE_WRITER', $this->getUser()->getRoles())) {
 //            $this->render('home/addArticle.html.twig', [
 //                'controller_name' => 'HomeController',
 //            ]);
@@ -35,7 +35,7 @@ class UserController extends AbstractController
     #[Route('/modo-space', name: 'modo_space')]
     public function modoSpace(): Response {
         //Secured for access
-//        if(!in_array('ROLE_MODO' || 'ROLE_ADMIN', $this->getUser()->getRoles())) {
+//        if(!in_array('ROLE_MODO', $this->getUser()->getRoles())) {
 //            $this->render('home/addArticle.html.twig', [
 //                'controller_name' => 'HomeController',
 //            ]);

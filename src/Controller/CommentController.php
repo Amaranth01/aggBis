@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,7 @@ class CommentController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em, Article $article): Response
     {
         if(!$this->isGranted('ROLE_USER')) {
-            return $this->render('home/addComment.html.twig');
+            return $this->render('home/index.html.twig');
         }
 
         $comment = new Comment();
@@ -40,10 +40,48 @@ class CommentController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $em->persist($comment);
             $em->flush();
-            return $this->redirectToRoute('app_article_display', ['slug' => $article->getSlug()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_article_display', ['slug' => $article->getSlug()]);
         }
         return $this->render('article/displayArticle.html.twig', [
             'article' => $article,
+        ]);
+    }
+
+    #[Route('/list', name: 'app_comment_list')]
+    public function listComment(CommentRepository $commentRepo): Response {
+        return $this->render('comment/listComment.html.twig', [
+            'comments' => $commentRepo->findAll(),
+        ]);
+    }
+
+    #[Route('/edit/{id}', name: 'app_comment_edit')]
+    public function editComment(Request $request, Comment $comment, EntityManagerInterface $em): Response {
+        if(!$this->isGranted('ROLE_MODO')) {
+            return $this->render('home/index.html.twig');
+        }
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+        }
+
+        return $this->render('comment/listComment.html.twig', [
+            'comments' => $comment,
+            'comment_edit_form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/delete/{id}', name : 'app_comment_delete')]
+    public function deleteComment(Comment $comment, EntityManagerInterface $em, CommentRepository $commentRepo): Response {
+        if(!$this->isGranted('ROLE_MODO')) {
+            return $this->render('home/index.html.twig');
+        }
+        $em->remove($comment);
+        $em->flush();
+
+        return $this->render('comment/listComment.html.twig', [
+           'comments' => $commentRepo->findAll(),
         ]);
     }
 }

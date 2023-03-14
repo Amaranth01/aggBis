@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} List article {% endblock %}
+
+{% block body %}
+    {% block content %}
+        {% if articles is defined %}
+            {% for article in articles %}
+                    <div id="articleMin">
+                        <p id="titleArticleMin">{{ article.title }}</p>
+                        <p><a href="/article/edit/{id}">{{ 'Edit Article' | trans }}</a></p>
+                        <p><a href="/article/delete/{id}">{{ 'Delete Article' | trans }}</a></p>
+                    </div>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}
