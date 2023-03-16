@@ -6,7 +6,8 @@
             <div id="article">
                 <div class="articleTitle">
                     <h1>{{ article.title }}</h1>
-                    <img src="/assets/uploads/{{ article.image }}" alt="article's image">
+                    {{ dump(article.image) }}
+                    <img src="{{  asset('uploads/'~  article.image)    }}" alt="article's image">
                 </div>
 
                 <div id="articleContent">
@@ -20,7 +21,7 @@
                 <h2>Comments</h2>
                 <div id="comment">
                     {% for comments in article.comment %}
-                        <p>{{ comments.user.username }}</p> <img src="uploads {{ comments.user.image }}" alt="">
+                        <p>{{ comments.user.username }}</p> <img src="{{ asset('uploads/' ~ comments.user.image) }}" alt="avatar user">
                         <p>{{ comments.content }}</p>
                     {% endfor %}
                 </div>

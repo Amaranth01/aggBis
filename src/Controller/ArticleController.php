@@ -51,8 +51,12 @@ class ArticleController extends AbstractController
             if(!$ext) {
                 $ext = 'jpg';
             }
+
             //Move and rename a file
-            $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
+            $fileName =uniqid() . "." . $ext;
+            $file->move($container->get('upload.directory'), $fileName);
+            $article->setImage($fileName);
+
             $article->setUser($user);
             $article->setSlug(strtolower($slugger->slug($form['title']->getData())));
             $em->persist($article);
