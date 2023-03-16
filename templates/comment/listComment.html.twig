@@ -1,3 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} Edit comment {% endblock %}
+
+{% block body %}
+    {% block content %}
+        {% if comments is defined %}
+            {% for comment in comments %}
+                <div id="articleMin">
+                    <p id="titleArticleMin">{{ comment.user }}</p>
+                    <p id="titleArticleMin">{{ comment.content }}</p>
+                    <p><a href="/comment/edit/{id}">{{ 'Edit Article' | trans }}</a></p>
+                    <p><a href="/comment/delete/{id}">{{ 'Delete Article' | trans }}</a></p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

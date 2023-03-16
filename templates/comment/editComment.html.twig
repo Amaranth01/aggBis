@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Edit comment {% endblock %}
+
+{% block body %}
+    <div class="commentForm">
+        {{ form_start(comment_edit_form) }}
+        <div class="form-content">
+            <div class="form_row">
+                {{ form_row('comment_edit_form'.content) }}
+            </div>
+            {{ form_end(comment_edit_form) }}
+        </div>
+    </div>
+{% endblock %}
