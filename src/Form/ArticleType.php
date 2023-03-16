@@ -17,7 +17,6 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('image', FileType::class)
-            ->add('user')
             ->add('save', SubmitType::class, [
                 'label' => "Saving"
             ])

@@ -42,8 +42,8 @@ class CommentController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_article_display', ['slug' => $article->getSlug()]);
         }
-        return $this->render('article/displayArticle.html.twig', [
-            'article' => $article,
+            return $this->render('comment/addComment.html.twig', [
+            'comment_form' => $form->createView(),
         ]);
     }
 

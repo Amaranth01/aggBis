@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <a href="/"><img src="/build/images/logoAGG.2b45c975.png" alt="logo du site" id="logo"></a>
-                <li><a href="">Articles</a></li>
+
                 {% if is_granted("ROLE_WRITER") %}
                     <li><a href="/user/writer-space">{{ 'Writer' | trans }}</a></li>
                 {% endif %}

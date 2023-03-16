@@ -6,7 +6,7 @@
             <div id="article">
                 <div class="articleTitle">
                     <h1>{{ article.title }}</h1>
-                    <img src="uploads/{{ article.image }}" alt="article's image">
+                    <img src="/assets/uploads/{{ article.image }}" alt="article's image">
                 </div>
 
                 <div id="articleContent">
@@ -20,7 +20,7 @@
                 <h2>Comments</h2>
                 <div id="comment">
                     {% for comments in article.comment %}
-                        <p>{{ comments.user.username }}</p> <span>{{ comments.user.image }}</span>
+                        <p>{{ comments.user.username }}</p> <img src="uploads {{ comments.user.image }}" alt="">
                         <p>{{ comments.content }}</p>
                     {% endfor %}
                 </div>
@@ -28,7 +28,6 @@
 
             <div id="addComment">
                 {% if app.user %}
-
                         <a href="{{ path('app_add_comment', {'slug' :article.slug  }) }}">{{ 'Add comment' |trans }} </a>
                     {% else %}
                         <p>You must be logged for posting a comment</p>

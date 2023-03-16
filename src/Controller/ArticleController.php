@@ -32,7 +32,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/add', name: 'app_article_add')]
-    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container, SluggerInterface $slugger, Comment $comment): Response
+    public function articleAdd(Request $request, EntityManagerInterface $em, ParameterBagInterface $container, SluggerInterface $slugger): Response
     {
         if(!$this->isGranted('ROLE_WRITER')) {
             return $this->render('home/addComment.html.twig');
@@ -54,7 +54,6 @@ class ArticleController extends AbstractController
             //Move and rename a file
             $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
             $article->setUser($user);
-            $comment->setContent($comment->getContent());
             $article->setSlug(strtolower($slugger->slug($form['title']->getData())));
             $em->persist($article);
             $em->flush();

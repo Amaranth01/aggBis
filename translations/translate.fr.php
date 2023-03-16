@@ -14,4 +14,5 @@ return [
   'Password' => 'mot de passe',
   'Delete an article' => 'Supprimer un article',
   'Edit an article' =>  'Editer un article',
+  'You must be logged for posting a comment' => 'Vous devez être connecté pour poster un commentaire',
 ];
