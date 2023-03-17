@@ -3,14 +3,14 @@
 {% block title %} Edit article {% endblock %}
 
 {% block body %}
-    <div class="articleForm">
+    <div class="form">
         {{ form_start(article_edit_form) }}
         <div class="form-content">
             <div class="form_row">
-                {{ form_row('article_edit_form'.title) }}
+                {{ form_row(article_edit_form.title) }}
             </div>
             <div class="form_row">
-                {{ form_row('article_edit_form'.content) }}
+                {{ form_row(article_edit_form.content) }}
             </div>
             {{ form_end(article_edit_form) }}
         </div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Form\ArticleEditType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
@@ -72,12 +73,12 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-#[Route('/edit/{id}', name: 'app_article_edit')]
+    #[Route('/edit/{id}', name: 'app_article_edit')]
     public function editArticle(Request $request, Article $article, EntityManagerInterface $em) : Response {
         if(!$this->isGranted('ROLE_WRITER')) {
             return $this->render('home/index.html.twig');
         }
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleEditType::class, $article);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -91,7 +92,7 @@ class ArticleController extends AbstractController
 
     #[Route('/delete/{id}', name: 'app_article_delete')]
     public function deleteArticle(Article $article, EntityManagerInterface $em, ArticleRepository $articleRepo): Response {
-        if(!$this->isGranted('ROLE_WRITER' || $this->getUser() !== $article->getUser()->getId())) {
+        if(!$this->isGranted('ROLE_WRITER')) {
             return $this->render('home/index.html.twig');
         }
         $em->remove($article);

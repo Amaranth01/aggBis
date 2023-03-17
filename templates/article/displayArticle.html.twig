@@ -4,34 +4,36 @@
     {% block content %}
         <div class="content">
             <div id="article">
-                <div class="articleTitle">
+                <div id="articleTitle">
                     <h1>{{ article.title }}</h1>
-                    {{ dump(article.image) }}
-                    <img src="{{  asset('uploads/'~  article.image)    }}" alt="article's image">
+                    <img src="{{ asset('uploads/'~  article.image) }}" alt="article's image" id="articleImage">
                 </div>
 
                 <div id="articleContent">
-                    <div>
-                        {{ article.content }}
-                    </div>
+                    {{ article.content }}
                 </div>
             </div>
 
             <div id="commentArticle">
                 <h2>Comments</h2>
-                <div id="comment">
-                    {% for comments in article.comment %}
-                        <p>{{ comments.user.username }}</p> <img src="{{ asset('uploads/' ~ comments.user.image) }}" alt="avatar user">
-                        <p>{{ comments.content }}</p>
-                    {% endfor %}
-                </div>
+                {% for comments in article.comment %}
+                    <div id="comment">
+                        <div>
+                            <p id="userComment">{{ comments.user.username }}</p> <img
+                                    src="{{ asset('uploads/' ~ comments.user.image) }}" alt="avatar user"
+                                    class="userAvatar">
+                        </div>
+
+                        <p id="commentContent">{{ comments.content }}</p>
+                    </div>
+                {% endfor %}
             </div>
 
             <div id="addComment">
                 {% if app.user %}
-                        <a href="{{ path('app_add_comment', {'slug' :article.slug  }) }}">{{ 'Add comment' |trans }} </a>
-                    {% else %}
-                        <p>You must be logged for posting a comment</p>
+                    <a href="{{ path('app_add_comment', {'slug' :article.slug  }) }}">{{ 'Add comment' |trans }} </a>
+                {% else %}
+                    <p>You must be logged for posting a comment</p>
 
                 {% endif %}
             </div>

@@ -14,7 +14,7 @@ body {
 h1 {
     text-align: center;
 }
-
+/*Menu*/
 ul {
     display: flex;
     justify-content: space-around;
@@ -32,4 +32,83 @@ li, li > a {
 
 #logo {
     width: 3rem;
+}
+
+.userAvatar {
+    width: 8vw;
+}
+
+#imgArticleMin {
+    width: 12rem;
+    padding: 0.5rem;
+}
+
+#listArticleHome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#articleMin {
+    margin-left: 2vw;
+    border: black 2px solid;
+    border-radius: 8px;
+    width: 33rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+
+#imgHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Display Article*/
+
+#articleTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#articleImage {
+    width: 50vw;
+    padding: 0.5rem;
+}
+
+#articleContent {
+    text-align: center;
+    width: 75vw;
+    margin-left: 13vw;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+
+#commentArticle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+#comment {
+    text-align: center;
+    margin-top: 1.5rem;
+    border: #93c5fd 2px solid;
+    width: 35rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+#userComment {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+#commentContent {
+    font-size: 1.3rem;
 }

@@ -26,7 +26,7 @@
 
                 {% if app.user %}
                     <li><a href="/logout">{{ 'Logout' | trans }}</a></li>
-                    <img src="{{ asset('uploads/' ~ app.user.image) }}" alt="avatar user">
+                    <img src="{{ asset('uploads/' ~ app.user.image) }}" alt="avatar user" class="userAvatar">
                 {% else %}
                     <li><a href="/login">{{ 'Login' | trans }}</a></li>
                     <li><a href="/register">{{ 'Register' | trans }}</a></li>

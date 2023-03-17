@@ -38,7 +38,9 @@ class RegisterController extends AbstractController
                 $ext = 'jpg';
             }
             //Move and rename a file
-            $file->move($container->get('upload.directory'), uniqid() . "." . $ext);
+            $fileName = uniqid() . "." . $ext;
+            $file->move($container->get('upload.directory'), $fileName);
+            $user->setImage($fileName);
             //register in database
             $user->setRoles($role);
             $em->persist($user);

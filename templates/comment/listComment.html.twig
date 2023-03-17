@@ -9,8 +9,8 @@
                 <div id="articleMin">
                     <p id="titleArticleMin">{{ comment.user }}</p>
                     <p id="titleArticleMin">{{ comment.content }}</p>
-                    <p><a href="/comment/edit/{id}">{{ 'Edit Article' | trans }}</a></p>
-                    <p><a href="/comment/delete/{id}">{{ 'Delete Article' | trans }}</a></p>
+                    <p><a href="{{ path('app_comment_edit', {id :comment.id}) }}">{{ 'Edit comment' | trans }}</a></p>
+                    <p><a href="{{ path('app_comment_delete', {id :comment.id}) }}">{{ 'Delete comment' | trans }}</a></p>
                 </div>
             {% endfor %}
         {% endif %}
