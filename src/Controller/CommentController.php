@@ -66,7 +66,7 @@ class CommentController extends AbstractController
             $em->flush();
         }
 
-        return $this->render('comment/listComment.html.twig', [
+        return $this->render('comment/editComment.html.twig', [
             'comments' => $comment,
             'comment_edit_form' => $form->createView(),
         ]);

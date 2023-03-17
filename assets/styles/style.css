@@ -50,7 +50,7 @@ li, li > a {
     align-items: center;
 }
 
-#articleMin {
+#articleMin, .info {
     margin-left: 2vw;
     border: black 2px solid;
     border-radius: 8px;
@@ -111,4 +111,72 @@ li, li > a {
 
 #commentContent {
     font-size: 1.3rem;
+}
+
+/*List comment and article*/
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 28vw;
+}
+
+/*Form*/
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+input, textarea {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    width: 20rem;
+}
+
+textarea {
+    width: 50vw;
+    height: 45vh;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: #93c5fd;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+/*Modo's space*/
+
+.modoSpace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 35rem;
+    border: #93c5fd 2px solid;
+    margin-left: 30vw;
+    margin-top: 15vh;
+    height: 25vh;
+    font-size: 2rem;
+}
+
+.modoSpace > a {
+    color: black;
+    font-weight: bold;
 }

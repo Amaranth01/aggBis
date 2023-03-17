@@ -3,13 +3,11 @@
 {% block title %} Edit comment {% endblock %}
 
 {% block body %}
-    <div class="commentForm">
+    <div class="form">
         {{ form_start(comment_edit_form) }}
-        <div class="form-content">
-            <div class="form_row">
-                {{ form_row(comment_edit_form.content) }}
-            </div>
-            {{ form_end(comment_edit_form) }}
+        <div>
+            {{ form_row(comment_edit_form.content) }}
         </div>
+        {{ form_end(comment_edit_form) }}
     </div>
 {% endblock %}

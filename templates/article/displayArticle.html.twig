@@ -19,9 +19,7 @@
                 {% for comments in article.comment %}
                     <div id="comment">
                         <div>
-                            <p id="userComment">{{ comments.user.username }}</p> <img
-                                    src="{{ asset('uploads/' ~ comments.user.image) }}" alt="avatar user"
-                                    class="userAvatar">
+                            <p id="userComment">{{ comments.user.username }}</p> <img src="{{ asset('uploads/' ~ comments.user.image) }}" alt="avatar user" class="userAvatar">
                         </div>
 
                         <p id="commentContent">{{ comments.content }}</p>

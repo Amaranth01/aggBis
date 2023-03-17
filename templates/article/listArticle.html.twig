@@ -6,8 +6,8 @@
     {% block content %}
         {% if articles is defined %}
             {% for article in articles %}
-                    <div id="articleMin">
-                        <p id="titleArticleMin">{{ article.title }}</p>
+                    <div class="info">
+                        <p>{{ article.title }}</p>
                         <p><a href="{{ path('app_article_edit', {id :article.id}) }}">{{ 'Edit Article' | trans }}</a></p>
                         <p><a href="{{ path('app_article_delete', {id :article.id}) }}">{{ 'Delete Article' | trans }}</a></p>
                     </div>

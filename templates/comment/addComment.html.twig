@@ -4,9 +4,12 @@
 
 {% block body %}
     <h2>{{ 'Add comment'| trans }}</h2>
-    {{ form_start(comment_form) }}
-    <div>
-        {{ form_row(comment_form.content) }}
+
+    <div class="form">
+        {{ form_start(comment_form) }}
+        <div>
+            {{ form_row(comment_form.content) }}
+        </div>
+        {{ form_end(comment_form) }}
     </div>
-    {{ form_end(comment_form) }}
 {% endblock %}
