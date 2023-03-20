@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="Z0jsi3Z" resname="Moderator">
+        <source>Moderator</source>
+        <target>Modération</target>
+      </trans-unit>
+      <trans-unit id="Djxf4A9" resname="Writer">
+        <source>Writer</source>
+        <target>Rédacteur</target>
+      </trans-unit>
+      <trans-unit id="zu0klyG" resname="Title of article">
+        <source>Title of article</source>
+        <target>Titre de l'article</target>
+      </trans-unit>
+      <trans-unit id="fxelAd2" resname="Content of article">
+        <source>Content of article</source>
+        <target>Contenu de l'article</target>
+      </trans-unit>
+      <trans-unit id="1134CET" resname="image of article">
+        <source>image of article</source>
+        <target>Image de l'article</target>
+      </trans-unit>
+      <trans-unit id="xNiR6ah" resname="Add comment">
+        <source>Add comment</source>
+        <target>Ajout de commentaire</target>
+      </trans-unit>
+      <trans-unit id="QpMFz.n" resname="Comment's content">
+        <source>Comment's content</source>
+        <target>Contenu du commentaire </target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>mot de passe</target>
+      </trans-unit>
+      <trans-unit id="SOVCPhj" resname="Delete an article">
+        <source>Delete an article</source>
+        <target>Supprimer un article</target>
+      </trans-unit>
+      <trans-unit id="_ReXCwg" resname="Edit an article">
+        <source>Edit an article</source>
+        <target>Editer un article</target>
+      </trans-unit>
+      <trans-unit id="tCR8b_7" resname="You must be logged for posting a comment">
+        <source>You must be logged for posting a comment</source>
+        <target>Vous devez être connecté pour poster un commentaire</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
